@@ -3,21 +3,20 @@ package com.qiutongs.datastructure;
 import java.util.ArrayList;
 
 public abstract class DataStructure {
-	// A data structure holds a list of operations.
-	protected final ArrayList<Operation> operationList;
+    // A data structure holds a list of operations.
+    protected final ArrayList<String> operationList;
 
-	public DataStructure() {
-		this.operationList = new ArrayList<>();
-	}
+    public DataStructure() {
+        this.operationList = new ArrayList<>();
+    }
 
-	protected void resiger(Operation op) {
-		operationList.add(op);
-	}
+    public ArrayList<String> getOperations() {
+        return operationList;
+    }
 
-	public ArrayList<Operation> getOperationList() {
-		return operationList;
-	}
+    protected void register(String operation) {
+        operationList.add(operation);
+    }
 
-	// Initialize this data structure with specified amount
-	abstract void initialize(int dataCount);
+    public abstract double[] test(int dataCount);
 }
