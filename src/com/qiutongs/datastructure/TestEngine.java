@@ -1,7 +1,5 @@
 package com.qiutongs.datastructure;
 
-import com.qiutongs.datastructure.array.Array;
-
 public class TestEngine {
     static final int[] FULL_DATA_SET = { 100, 1000, 10000, 100000, 200000, 400000 };
     static final int[] SMALL_DATA_SET = { 100, 1000, 10000 };
@@ -57,7 +55,7 @@ public class TestEngine {
     }
 
     public static void main(String[] args) {
-        Array array = new Array();
+        DataStructureArray array = new DataStructureArray();
         TestEngine engine = new TestEngine(FULL_DATA_SET, array);
 
         engine.run();

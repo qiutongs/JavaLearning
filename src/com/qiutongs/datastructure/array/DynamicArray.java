@@ -2,9 +2,7 @@ package com.qiutongs.datastructure.array;
 
 import java.util.Arrays;
 
-import com.qiutongs.datastructure.TestEngine;
-
-public class DynamicArray<I> {
+public class DynamicArray<I> implements Array<I> {
     private static final int INITIAL_CAPACITY = 1;
     private static final int SCALE_FACTOR = 2;
 
@@ -58,52 +56,67 @@ public class DynamicArray<I> {
         return null;
     }
 
+    public I remove(int index) {
+        I result = get(index);
+
+        leftShift(index, size);
+        size--;
+
+        return result;
+    }
+
     public int size() {
         return size;
     }
-    
+
     public int capacity() {
         return capacity;
     }
-    
+
     @Override
     public String toString() {
         return Arrays.toString(array);
     }
-    
+
+    private void leftShift(int startIndex, int endIndex) {
+        for (int i = startIndex; i < endIndex - 1; i++) {
+            array[i] = array[i + 1];
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("-------- Dynamic Capacity Illustration --------  ");
         DynamicArray<Integer> array = new DynamicArray<>();
         System.out.println("Initial size: " + array.size());
         System.out.println("Initial capacity: " + array.capacity());
-        
+
         array.add(3);
         System.out.println("Size after adding one number: " + array.size());
         System.out.println("Capacity after adding one number: " + array.size());
 
         array.add(12);
         System.out.println("Capacity after adding two numbers: " + array.capacity());
-        
+
         array.add(26);
         System.out.println("Capacity after adding three numbers: " + array.capacity());
         System.out.println("Size after adding three numbers: " + array.size());
-        
+
         array.add(56);
         array.add(65);
         System.out.println("Capacity after adding five numbers: " + array.capacity());
         System.out.println("Size after adding five numbers: " + array.size());
-        
+
         System.out.println("-------- Basic add, get, set, search --------  ");
-        
+
         System.out.println("Search existed element: " + array.search(3));
         System.out.println("Search not existed element: " + array.search(2));
-        
+
         System.out.println("Number in index 0: " + array.get(0));
         array.set(0, 6);
         System.out.println("Number in index 0, after set: " + array.get(0));
         System.out.println("Search old element: " + array.search(3));
         System.out.println("Search new element: " + array.search(6));
-        
+
         System.out.println(array);
     }
 
