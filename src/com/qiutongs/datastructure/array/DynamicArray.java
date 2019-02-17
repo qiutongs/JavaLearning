@@ -75,7 +75,18 @@ public class DynamicArray<I> implements Array<I> {
 
     @Override
     public String toString() {
-        return Arrays.toString(array);
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("[ ");
+        if (size > 0) {
+            sb.append(array[0]);
+            for (int i = 1; i < size; i++) {
+                sb.append(", ");
+                sb.append(array[i]);
+            }
+        }
+        sb.append(" ]");
+        return sb.toString();
     }
 
     private void leftShift(int startIndex, int endIndex) {
