@@ -7,7 +7,7 @@ public interface Array<I> {
 
     public void set(int index, I value);
 
-    public I search(I item);
+    public int search(I item);
 
     public int size();
 }

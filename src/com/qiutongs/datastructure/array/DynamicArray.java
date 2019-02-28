@@ -1,13 +1,11 @@
 package com.qiutongs.datastructure.array;
 
-import java.util.Arrays;
-
 public class DynamicArray<I> implements Array<I> {
     private static final int INITIAL_CAPACITY = 1;
     private static final int SCALE_FACTOR = 2;
 
-    private Object[] array;
-    private int size;
+    protected Object[] array;
+    protected int size;
     private int capacity;
 
     public DynamicArray() {
@@ -31,6 +29,7 @@ public class DynamicArray<I> implements Array<I> {
         array[size++] = item;
     }
 
+    @SuppressWarnings("unchecked")
     public I get(int index) {
         if (index < 0 || index >= size) {
             throw new RuntimeException();
@@ -47,13 +46,13 @@ public class DynamicArray<I> implements Array<I> {
         array[index] = value;
     }
 
-    public I search(I item) {
-        for (Object obj : array) {
-            if (item.equals(obj)) {
-                return (I) obj;
+    public int search(I item) {
+        for (int i = 0; i < size; i++) {
+            if (item.equals(array[i])) {
+                return i;
             }
         }
-        return null;
+        return -1;
     }
 
     public I remove(int index) {
@@ -76,7 +75,7 @@ public class DynamicArray<I> implements Array<I> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        
+
         sb.append("[ ");
         if (size > 0) {
             sb.append(array[0]);
@@ -130,5 +129,4 @@ public class DynamicArray<I> implements Array<I> {
 
         System.out.println(array);
     }
-
 }
