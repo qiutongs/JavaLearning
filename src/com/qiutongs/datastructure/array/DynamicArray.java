@@ -18,15 +18,24 @@ public class DynamicArray<I> implements Array<I> {
         this.capacity = capacity;
     }
 
+    @Override
     public void add(I item) {
         if (size == capacity) {
-            capacity = capacity == 0 ? 1 : capacity * SCALE_FACTOR;
-            Object[] newArray = new Object[this.capacity];
-            System.arraycopy(array, 0, newArray, 0, size);
-            array = newArray;
+            scaleUp();
         }
 
         array[size++] = item;
+    }
+
+    @Override
+    public void add(int index, I item) {
+        if (size == capacity) {
+            scaleUp();
+        }
+
+        rightShift(index, size);
+        array[index] = item;
+        size++;
     }
 
     @SuppressWarnings("unchecked")
@@ -92,6 +101,19 @@ public class DynamicArray<I> implements Array<I> {
         for (int i = startIndex; i < endIndex - 1; i++) {
             array[i] = array[i + 1];
         }
+    }
+
+    private void rightShift(int startIndex, int endIndex) {
+        for (int i = endIndex; i > startIndex; i--) {
+            array[i] = array[i - 1];
+        }
+    }
+
+    private void scaleUp() {
+        capacity = capacity == 0 ? 1 : capacity * SCALE_FACTOR;
+        Object[] newArray = new Object[this.capacity];
+        System.arraycopy(array, 0, newArray, 0, size);
+        array = newArray;
     }
 
     public static void main(String[] args) {

@@ -4,13 +4,21 @@ public class SortedDynamicArray<I extends Comparable<I>> extends DynamicArray<I>
 
     @Override
     public void add(I item) {
+        int index = binarySearch(item, 0, size - 1);
 
+        index = index < 0 ? -index - 1 : index;
+        super.add(index, item);
+    }
+
+    @Override
+    public int search(I item) {
+        return binarySearch(item, 0, size - 1);
     }
 
     @SuppressWarnings("unchecked")
-    private int binaryAdd(I item, int startIndex, int endIndex) {
+    private int binarySearch(I item, int startIndex, int endIndex) {
         if (startIndex > endIndex) {
-            return -1;
+            return -(startIndex + 1);
         }
 
         int midIndex = (startIndex + endIndex) / 2;
@@ -26,27 +34,11 @@ public class SortedDynamicArray<I extends Comparable<I>> extends DynamicArray<I>
         }
     }
     
-    @Override
-    public int search(I item) {
-        return binarySearch(item, 0, size - 1);
-    }
-
-    @SuppressWarnings("unchecked")
-    private int binarySearch(I item, int startIndex, int endIndex) {
-        if (startIndex > endIndex) {
-            return -1;
-        }
-
-        int midIndex = (startIndex + endIndex) / 2;
-
-        int compareResult = ((I) array[midIndex]).compareTo(item);
-
-        if (compareResult == 0) {
-            return midIndex;
-        } else if (compareResult < 0) {
-            return binarySearch(item, midIndex + 1, endIndex);
-        } else {
-            return binarySearch(item, startIndex, midIndex - 1);
-        }
+    public static void main(String[] args) {
+        SortedDynamicArray<Integer> array = new SortedDynamicArray<>();
+        
+        array.add(1);
+        System.out.println(array);
+    
     }
 }

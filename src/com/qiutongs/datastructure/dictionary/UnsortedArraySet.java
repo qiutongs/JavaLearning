@@ -2,33 +2,10 @@ package com.qiutongs.datastructure.dictionary;
 
 import com.qiutongs.datastructure.array.DynamicArray;
 
-public class UnsortedArraySet<I extends Comparable<I>> implements Set<I> {
-    private final DynamicArray<I> array;
+public class UnsortedArraySet<I extends Comparable<I>> extends ArraySet<I> {
 
     public UnsortedArraySet() {
-        this.array = new DynamicArray<>();
-    }
-
-    @Override
-    public void add(I item) {
-        array.add(item);
-    }
-
-    @Override
-    public boolean remove(I item) {
-        int index = array.search(item);
-
-        if (index == -1) {
-            return false;
-        } else {
-            array.remove(index);
-            return true;
-        }
-    }
-
-    @Override
-    public boolean search(I item) {
-        return array.search(item) != -1;
+        super(new DynamicArray<I>());
     }
 
     public static void main(String[] args) {
