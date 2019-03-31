@@ -67,7 +67,7 @@ public class DynamicArray<I> implements Array<I> {
     public I remove(int index) {
         I result = get(index);
 
-        leftShift(index, size);
+        swap(index, size - 1);
         size--;
 
         return result;
@@ -97,19 +97,26 @@ public class DynamicArray<I> implements Array<I> {
         return sb.toString();
     }
 
-    private void leftShift(int startIndex, int endIndex) {
+    @SuppressWarnings("unchecked")
+    protected void swap(int index1, int index2) {
+        I tmp = (I) array[index1];
+        array[index1] = array[index2];
+        array[index2] = tmp;
+    }
+
+    protected void leftShift(int startIndex, int endIndex) {
         for (int i = startIndex; i < endIndex - 1; i++) {
             array[i] = array[i + 1];
         }
     }
 
-    private void rightShift(int startIndex, int endIndex) {
+    protected void rightShift(int startIndex, int endIndex) {
         for (int i = endIndex; i > startIndex; i--) {
             array[i] = array[i - 1];
         }
     }
 
-    private void scaleUp() {
+    protected void scaleUp() {
         capacity = capacity == 0 ? 1 : capacity * SCALE_FACTOR;
         Object[] newArray = new Object[this.capacity];
         System.arraycopy(array, 0, newArray, 0, size);

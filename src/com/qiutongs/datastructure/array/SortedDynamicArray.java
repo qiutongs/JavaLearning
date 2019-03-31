@@ -15,6 +15,16 @@ public class SortedDynamicArray<I extends Comparable<I>> extends DynamicArray<I>
         return binarySearch(item, 0, size - 1);
     }
 
+    @Override
+    public I remove(int index) {
+        I result = get(index);
+
+        leftShift(index, size);
+        size--;
+
+        return result;
+    }
+
     @SuppressWarnings("unchecked")
     private int binarySearch(I item, int startIndex, int endIndex) {
         if (startIndex > endIndex) {
@@ -33,12 +43,12 @@ public class SortedDynamicArray<I extends Comparable<I>> extends DynamicArray<I>
             return binarySearch(item, startIndex, midIndex - 1);
         }
     }
-    
+
     public static void main(String[] args) {
         SortedDynamicArray<Integer> array = new SortedDynamicArray<>();
-        
+
         array.add(1);
         System.out.println(array);
-    
+
     }
 }
