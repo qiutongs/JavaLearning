@@ -38,7 +38,7 @@ public class GenericTest {
         Parent anotherP = pCovariance.get();
         
         // The method func(capture#2-of ? extends Parent) in the type Generic<capture#2-of ? extends Parent> is not applicable for the arguments (Parent)
-        // pCovariance.func(anotherP);
+        // pCovariance.func();
         
         // The method add(capture#2-of ? extends Parent) in the type List<capture#2-of ? extends Parent> is not applicable for the arguments (Child)
         // pListCovariance.add(new Child());
@@ -54,6 +54,9 @@ public class GenericTest {
         
         pContravariance.func(new Child());
         pListContravariance.add(new Child());
+        
+        List<Parent> list  = new ArrayList<>();
+        list.add(new Child());
     }
 
 }
