@@ -1,10 +1,10 @@
-package com.qiutongs.generic;
+package com.qiutongs.java.generic;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.qiutongs.inheritance.Child;
-import com.qiutongs.inheritance.Parent;
+import com.qiutongs.java.inheritance.Child;
+import com.qiutongs.java.inheritance.Parent;
 
 /**
  * @author qiutongs

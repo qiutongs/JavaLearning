@@ -1,4 +1,4 @@
-package com.qiutongs.inheritance;
+package com.qiutongs.java.inheritance;
 
 import java.util.ArrayList;
 import java.util.List;

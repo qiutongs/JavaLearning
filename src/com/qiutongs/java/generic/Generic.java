@@ -1,4 +1,4 @@
-package com.qiutongs.generic;
+package com.qiutongs.java.generic;
 
 public class Generic<T> {
 
